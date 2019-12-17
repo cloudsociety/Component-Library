@@ -5,7 +5,7 @@ import Button from './';
 
 import General from './Button.md';
 
-let stories = storiesOf('Atoms|Button', module);
+let stories = storiesOf('Basics|Button', module);
 
 stories.add(
   'Default',

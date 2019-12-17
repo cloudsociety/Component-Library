@@ -4,6 +4,8 @@ import {withA11y} from '@storybook/addon-a11y';
 import {withKnobs} from '@storybook/addon-knobs';
 // import {action} from '@storybook/addon-actions';
 
+import './styleguide.css';
+
 addParameters({
   options: {
     theme: versettTheme, // theme storybook

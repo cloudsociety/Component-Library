@@ -1,0 +1,65 @@
+/*------------------------------------*\
+#LAYOUTSIDEBAR
+
+Assumes that sidebar will either be a
+1/3-2/3 layout or 2/3-1/3 layout.
+\*------------------------------------*/
+
+$spacing-large: 4rem;
+
+.vrst-layout-sidebar {
+  overflow: hidden;
+}
+
+/*
+ * +------------+-----------------------+
+ * |            |                       |
+ * |     a      |           b           |
+ * |            |                       |
+ * +------------+-----------------------+
+ */
+.vrst-layout-sidebar > * {
+  display: flex;
+  flex-wrap: wrap;
+  // Reduce top/bottom margins.
+  margin: calc(#{$spacing-large} / 4 * -1) calc(#{$spacing-large} / 2 * -1);
+}
+
+/*
+ * +------------------------+-----------+
+ * |                        |           |
+ * |            a           |     b     |
+ * |                        |           |
+ * +------------------------+-----------+
+ *
+ * Warning: Changing source order doesn't change tab order.
+ * AT users that also view screen might be confused.
+ */
+// Sidebar displayed second only on wide viewports.
+.vrst-layout-sidebar--right-for-desktop > *,
+.vrst-layout-sidebar--swap-order > * {
+  flex-direction: row-reverse;
+}
+// Sidebar displayed second everywhere (except AT devices).
+.vrst-layout-sidebar--right-for-all > * > :last-child {
+  order: 1;
+}
+
+.vrst-layout-sidebar > * > *,
+.vrst-layout-sidebar.vrst-layout-sidebar--swap-order > * > :last-child {
+  flex-grow: 1;
+  // To get the "subtrahend":
+  // total width of gaps: 4rem * 2 gaps (assuming 3 column grid)
+  // total gap width / total columns: 8rem / 2 columns (one column spans two grid columns)
+  flex-basis: calc(33.333% - #{$spacing-large});
+  // Set min-width on smaller column to avoid overflow on smaller screens.
+  // min-width: 13rem;
+  margin: calc(#{$spacing-large} / 4) calc(#{$spacing-large} / 2);
+}
+
+.vrst-layout-sidebar > * > :last-child,
+.vrst-layout-sidebar.vrst-layout-sidebar--swap-order > * > :first-child {
+  // Need to tell the second element how big to be.
+  // Same math as above to get "subtrahend".
+  flex-basis: calc(66.667% - #{$spacing-large});
+}

@@ -1,0 +1,15 @@
+.fpo {
+  display: flex;
+  color: skyblue;
+  border: 5px solid;
+  background-color: powderblue;
+  min-height: 100px;
+  padding: 1rem;
+}
+.fpo::before {
+  content: 'FPO';
+  font-weight: bold;
+  font-size: 2rem;
+  color: hsla(0, 100%, 100%, 0.5);
+  margin: auto;
+}
