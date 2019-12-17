@@ -1,5 +1,7 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useEffect, useRef, useState } from "react";
 // import scrollSnapPolyfill from "css-scroll-snap-polyfill"
+
+import css from "./Slider.module.scss";
 
 interface IProps {
   children: Array<any>;
@@ -9,7 +11,7 @@ interface IProps {
   // stepBy?: number;
 }
 
-const Slider = ({children}: IProps) => {
+const Slider = ({ children }: IProps) => {
   const slider = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   console.log(currentSlide);
@@ -21,27 +23,27 @@ const Slider = ({children}: IProps) => {
 
     const config = {
       root: slider.current,
-      rootMargin: '-10px', // Ensure items just outside viewport are "off".
-      threshold: 0,
+      rootMargin: "-10px", // Ensure items just outside viewport are "off".
+      threshold: 0
     };
 
     let observer = new IntersectionObserver(function(entries) {
       entries.forEach(entry => {
-        entry.target.classList.remove('visible');
+        entry.target.classList.remove("visible");
         if (entry.intersectionRatio === 0) {
           return;
         }
-        entry.target.classList.add('visible');
+        entry.target.classList.add("visible");
       });
 
       // TODO: Fix me!!! Not quite right
-      setCurrentSlide(+entries[0].target.getAttribute('data-index'));
+      setCurrentSlide(+entries[0].target.getAttribute("data-index"));
     }, config);
 
     // Gonna need this later, so bump it to state.
     setSlides(slider.current.children);
     [...slides].forEach((slide, index) => {
-      slide.setAttribute('data-index', index);
+      slide.setAttribute("data-index", index);
       observer.observe(slide);
     });
 
@@ -60,14 +62,14 @@ const Slider = ({children}: IProps) => {
     slider.current.scrollBy({
       top: 0,
       left: relativePos,
-      behavior: 'smooth',
+      behavior: "smooth"
     });
   };
 
   function showNextPrevious(direction: string) {
     const parentPos: ClientRect = slider.current.getBoundingClientRect();
     let visibleChildren: Array<HTMLElement> = [
-      ...slider.current.querySelectorAll('.visible'),
+      ...slider.current.querySelectorAll(".visible")
     ].filter(child => {
       const bounds = child.getBoundingClientRect();
       return (
@@ -76,11 +78,11 @@ const Slider = ({children}: IProps) => {
     });
     const visibleQuantity: number = visibleChildren.length;
     const firstVisibleChildIndex: number = +visibleChildren[0].getAttribute(
-      'data-index',
+      "data-index"
     );
 
     const newIndex: number =
-      direction === 'previous'
+      direction === "previous"
         ? firstVisibleChildIndex - 1 < 0
           ? slides.length - 1
           : firstVisibleChildIndex - 1
@@ -93,20 +95,21 @@ const Slider = ({children}: IProps) => {
   return (
     <>
       <div className="buttons">
-        <button id="previous" onClick={() => showNextPrevious('previous')}>
+        <button id="previous" onClick={() => showNextPrevious("previous")}>
           Previous
         </button>
-        <button id="next" onClick={() => showNextPrevious('next')}>
+        <button id="next" onClick={() => showNextPrevious("next")}>
           Next
         </button>
       </div>
-      <div className="slider" tabIndex={-1}>
+      <div className={css["vrst-slider"]} tabIndex={-1}>
         <ul
-          className="slides"
+          className={css["vrst-slides"]}
           ref={slider}
           role="region"
           aria-label="gallery"
-          tabIndex={0}>
+          tabIndex={0}
+        >
           {children.map((child, index) => (
             <li key={index}>{child}</li>
           ))}

@@ -1,0 +1,50 @@
+/*------------------------------------*\
+#DRAWER
+\*------------------------------------*/
+
+.vrst-drawer {
+  // Write some styles
+}
+
+[class*="ReactModal__Body--open"] {
+  overflow: hidden;
+}
+[class*="vrst-drawer"][class*="ReactModal__Content"] {
+  overflow: auto;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 300px;
+  max-width: 100%;
+  bottom: 0px;
+  background-color: whitesmoke;
+  box-shadow: 2px 0 5px #000;
+  transition: transform 0.25s ease-in-out;
+  transform: translateX(-100%);
+}
+
+[class*="vrst-drawer"][class*="ReactModal__Content--after-open"] {
+  transform: translateX(0);
+}
+
+[class*="vrst-drawer"][class*="ReactModal__Content--before-close"] {
+  transform: translateX(-100%) !important;
+}
+
+[class*="vrst-drawer-overlay"][class*="ReactModal__Overlay"] {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: hsla(0, 0%, 0%, 0.5);
+  transition: opacity 0.25s ease-in-out;
+  opacity: 0;
+}
+[class*="vrst-drawer-overlay"][class*="ReactModal__Overlay--after-open"] {
+  opacity: 1;
+}
+
+[class*="vrst-drawer-overlay"][class*="ReactModal__Overlay--before-close"] {
+  opacity: 0 !important;
+}

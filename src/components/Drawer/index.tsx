@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import shortid from "shortid";
 import ReactModal from "react-modal";
 
-import css from "./Modal.module.scss";
+import css from "./Drawer.module.scss";
 
 interface IProps {
   children: React.ReactNode | Array<React.ReactNode>;
@@ -20,7 +20,7 @@ const Modal = ({ children, isOpen, onRequestClose }: IProps) => {
   }, [isOpen]);
 
   return (
-    <div className={css["vrst-modal"]}>
+    <div className={css["vrst-drawer"]}>
       <ReactModal
         isOpen={showModal}
         aria={{
@@ -28,8 +28,8 @@ const Modal = ({ children, isOpen, onRequestClose }: IProps) => {
         }}
         onRequestClose={onRequestClose}
         closeTimeoutMS={250}
-        className="vrst-modal" // Used to remove default styles.
-        overlayClassName="vrst-modal-overlay" // Used to remove default styles.
+        className="vrst-drawer" // Used to remove default styles.
+        overlayClassName="vrst-drawer-overlay" // Used to remove default styles.
       >
         {children}
       </ReactModal>

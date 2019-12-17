@@ -1,31 +1,31 @@
-import React from "react"
-import { storiesOf } from "@storybook/react"
-import Slider from "./"
+import React from "react";
+import { storiesOf } from "@storybook/react";
+import Slider from "./";
 
-let stories = storiesOf("Molecules|Slider", module)
+let stories = storiesOf("Interactions|Slider", module);
 
 const myArr = [
   {
     name: "One",
-    width: "50vw",
+    width: "50vw"
   },
   {
     name: "Two",
-    width: "30vw",
+    width: "30vw"
   },
   {
     name: "Three",
-    width: "40vw",
+    width: "40vw"
   },
   {
     name: "Four",
-    width: "60vw",
+    width: "60vw"
   },
   {
     name: "Five",
-    width: "40vw",
-  },
-]
+    width: "40vw"
+  }
+];
 
 stories
   .add("Default", () => (
@@ -49,4 +49,4 @@ stories
         </section>
       ))}
     </Slider>
-  ))
+  ));
