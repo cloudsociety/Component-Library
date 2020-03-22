@@ -1,18 +1,28 @@
 import React, { useState, useEffect } from "react";
-import shortid from "shortid";
 import ReactModal from "react-modal";
+import classNames from "classnames";
 
-import css from "./Modal.module.scss";
+import css from "./index.module.scss";
 
 interface IProps {
-  children: React.ReactNode | Array<React.ReactNode>;
-  onRequestClose(): void;
   isOpen: boolean;
+  isWide?: boolean;
+  aria?: {
+    labelledby?: string;
+    describedby?: string;
+  };
+  children: React.ReactNode | React.ReactNode[];
+  onRequestClose(): void;
 }
 
-const Modal = ({ children, isOpen, onRequestClose }: IProps) => {
+const Modal = ({
+  children,
+  isOpen,
+  isWide = false,
+  onRequestClose,
+  aria = {}
+}: IProps) => {
   // Ensure all IDs are unique throughout the site.
-  const shortId = shortid.generate();
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
@@ -20,20 +30,27 @@ const Modal = ({ children, isOpen, onRequestClose }: IProps) => {
   }, [isOpen]);
 
   return (
-    <div className={css["vrst-modal"]}>
-      <ReactModal
-        isOpen={showModal}
-        aria={{
-          labelledby: `modal-title-${shortId}`
-        }}
-        onRequestClose={onRequestClose}
-        closeTimeoutMS={250}
-        className="vrst-modal" // Used to remove default styles.
-        overlayClassName="vrst-modal-overlay" // Used to remove default styles.
-      >
-        {children}
-      </ReactModal>
-    </div>
+    <ReactModal
+      isOpen={showModal}
+      aria={aria}
+      onRequestClose={onRequestClose}
+      closeTimeoutMS={250}
+      className={{
+        base: classNames(css.modal, {
+          [css.modalWide]: isWide
+        }),
+        afterOpen: css.modalAfterOpen,
+        beforeClose: css.modalBeforeClose
+      }} // Used to remove default styles.
+      overlayClassName={{
+        base: css.modalOverlay,
+        afterOpen: css.modalOverlayAfterOpen,
+        beforeClose: css.modalOverlayBeforeClose
+      }} // Used to remove default styles.
+      bodyOpenClassName={css.modalIsOpen}
+    >
+      {children}
+    </ReactModal>
   );
 };
 

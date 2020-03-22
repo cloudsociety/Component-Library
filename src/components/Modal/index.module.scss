@@ -1,0 +1,65 @@
+/* ------------------------------------ *\
+#MODAL
+
+We should leave only the bare minimum
+of styling on this component to make
+it reusable. ie. Modal box padding can
+be applied to the child components.
+\* ------------------------------------ */
+
+$spacing: 2rem;
+$default-width: 700px;
+$wide-width: 900px;
+$modal-background: #ffffff;
+$overlay-background: rgba(0, 0, 0, 0.5);
+$transition-speed: 0.25s;
+
+.modalIsOpen {
+  overflow: hidden;
+}
+
+.modal {
+  background-color: $modal-background;
+  margin: auto;
+  max-height: 100%;
+  max-width: 100%;
+  overflow: auto;
+  width: $default-width;
+}
+
+// .modalAfterOpen {
+// place holder
+// }
+
+// .modalBeforeClose {
+// placeholder
+// }
+
+.modalWide {
+  width: $wide-width;
+}
+
+.modalOverlay {
+  background-color: $overlay-background;
+  bottom: 0;
+  display: flex;
+  left: 0;
+  opacity: 0;
+  padding: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  transition: opacity #{$transition-speed} ease-in-out;
+  z-index: 10;
+
+  @media (min-width: 1024px) {
+    padding: $spacing;
+  }
+}
+.modalOverlayAfterOpen {
+  opacity: 1;
+}
+
+.modalOverlayBeforeClose {
+  opacity: 0;
+}

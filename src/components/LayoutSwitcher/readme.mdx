@@ -1,0 +1,66 @@
+# Layout Switcher
+
+The switcher is a layout utility that will automatically make a row of items collapse to a single column when the content width is less than a specified size.
+
+```
+For wide screens, you get this.
++-----------+-----------+-----------+-----------+
+|           |           |           |           |
+|           |           |           |           |
+|           |           |           |           |
++-----------+-----------+-----------+-----------+
+
+For smaller screens, you get this.
+There is no middle ground, either
+a single row or a single column.
++-----------+
+|           |
+|           |
++-----------+
+|           |
+|           |
++-----------+
+|           |
+|           |
++-----------+
+|           |
+|           |
++-----------+
+
+```
+
+## Usage
+
+```
+<LayoutSwitcher>
+  <div className="fpo"></div>
+  <div className="fpo"></div>
+  <div className="fpo"></div>
+</LayoutSwitcher>
+```
+
+If you have a single child (ie, `<ul>`), the component will assume you want the grandchildren to be spaced and will set it up that way.
+
+```
+// This does the same as above, but uses a `ul` for the child wrapper instead.
+<LayoutSwitcher>
+  <ul>
+    <li>One</li>
+    <li>Two</li>
+    <li>Three</li>
+  </ul>
+</LayoutSwitcher>
+```
+
+Children will grow to take up 100% of available space. If design requires that they maintain a fixed max-width, pass the `noGrow` prop.
+
+## Props
+
+| Name     | Required | Type                                 | DefaultValue |
+| -------- | -------- | ------------------------------------ | ------------ |
+| children | yes      | React.ReactNode \| React.ReactNode[] |              |
+| noGrow   |          | boolean                              | false        |
+
+## Examples
+
+Some possible examples here.

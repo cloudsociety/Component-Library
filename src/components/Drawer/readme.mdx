@@ -1,0 +1,45 @@
+# Drawer
+
+A drawer is a type of modal. The core difference between this and a standard modal is how it animates in.
+
+## Usage
+
+Because we want to control the drawer from outside of itself, we need to pass in our open/close function. This can be done with `useState()`.
+
+```
+const [openDrawer, setOpenDrawer] = useState(false);
+```
+
+Now, we set up the external button and the drawer. These can exist next to each other since React-Modal will move the drawer to a React portal. If we want to use `aria` attributes, we also need unique ids. These can be set manually or with a package called [shortid](https://www.npmjs.com/package/shortid.)
+
+```
+<>
+  <button onClick={() => setOpenDrawer(true)}>Open</button>
+  <Drawer
+    isOpen={openDrawer}
+    onRequestClose={() => setOpenDrawer(false)}
+    aria={{
+      labelledby: `UNIQUE-MODAL-TITLE`
+    }}
+  >
+    <h2 id={`UNIQUE-MODAL-TITLE`}>
+      First element in modal should be waypoint marker like a heading for AT
+      users. It can be visibly hidden if desired.
+    </h2>
+    <button onClick={() => setOpenDrawer(false)}>Close</button>
+  </Drawer>
+</>
+```
+
+## Props
+
+| Name             | Required | Type                                           | DefaultValue |
+| ---------------- | -------- | ---------------------------------------------- | ------------ |
+| isOpen           | yes      | boolean                                        |              |
+| aria             |          | { labelledby?: string; describedby?: string; } | {}           |
+| children         | yes      | React.ReactNode \| React.ReactNode[]           |              |
+| onRequestClose() | yes      | void                                           |              |
+
+## Examples
+
+Some possible examples here.

@@ -1,13 +1,42 @@
-import React from 'react';
-import classnames from 'classnames';
+import React from "react";
+import classnames from "classnames";
 
-import css from './Button.module.scss';
+import css from "./index.module.scss";
 
-const Button = ({children}) => {
+interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  secondary?: boolean;
+  buttonStyle?: "normal" | "hollow" | "link";
+  large?: boolean;
+  classes?: string;
+}
+
+const Button = ({
+  children,
+  type,
+  disabled = false,
+  secondary = false,
+  buttonStyle = "normal",
+  large = false,
+  classes = "",
+  ...otherProps
+}: IProps) => {
   return (
-    <>
-      <button className={classnames(css['vrst-button'])}>{children}</button>
-    </>
+    <button
+      type={type}
+      className={classnames(
+        css.button,
+        css[`button--${buttonStyle}`],
+        {
+          [css["button--secondary"]]: secondary,
+          [css["button--large"]]: large
+        },
+        classes
+      )}
+      disabled={disabled}
+      {...otherProps}
+    >
+      <span>{children}</span>
+    </button>
   );
 };
 

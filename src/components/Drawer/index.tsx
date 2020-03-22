@@ -1,40 +1,46 @@
 import React, { useState, useEffect } from "react";
-import shortid from "shortid";
 import ReactModal from "react-modal";
 
-import css from "./Drawer.module.scss";
+import css from "./index.module.scss";
 
 interface IProps {
-  children: React.ReactNode | Array<React.ReactNode>;
-  onRequestClose(): void;
   isOpen: boolean;
+  aria?: {
+    labelledby?: string;
+    describedby?: string;
+  };
+  children: React.ReactNode | React.ReactNode[];
+  onRequestClose(): void;
 }
 
-const Modal = ({ children, isOpen, onRequestClose }: IProps) => {
-  // Ensure all IDs are unique throughout the site.
-  const shortId = shortid.generate();
-  const [showModal, setShowModal] = useState(false);
+const Drawer = ({ children, isOpen, onRequestClose, aria = {} }: IProps) => {
+  const [showDrawer, setShowDrawer] = useState(false);
 
   useEffect(() => {
-    setShowModal(isOpen);
+    setShowDrawer(isOpen);
   }, [isOpen]);
 
   return (
-    <div className={css["vrst-drawer"]}>
-      <ReactModal
-        isOpen={showModal}
-        aria={{
-          labelledby: `modal-title-${shortId}`
-        }}
-        onRequestClose={onRequestClose}
-        closeTimeoutMS={250}
-        className="vrst-drawer" // Used to remove default styles.
-        overlayClassName="vrst-drawer-overlay" // Used to remove default styles.
-      >
-        {children}
-      </ReactModal>
-    </div>
+    <ReactModal
+      isOpen={showDrawer}
+      aria={aria}
+      onRequestClose={onRequestClose}
+      closeTimeoutMS={250}
+      className={{
+        base: css.drawer,
+        afterOpen: css.drawerAfterOpen,
+        beforeClose: css.drawerBeforeClose
+      }} // Used to remove default styles.
+      overlayClassName={{
+        base: css.drawerOverlay,
+        afterOpen: css.drawerOverlayAfterOpen,
+        beforeClose: css.drawerOverlayBeforeClose
+      }} // Used to remove default styles.
+      bodyOpenClassName={css.drawerIsOpen}
+    >
+      {children}
+    </ReactModal>
   );
 };
 
-export default Modal;
+export default Drawer;

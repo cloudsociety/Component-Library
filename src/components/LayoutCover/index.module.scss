@@ -1,0 +1,31 @@
+/*------------------------------------*\
+#LAYOUTCOVER
+\*------------------------------------*/
+
+// import variable file and use that instead.
+$spacing-medium: 1.5rem;
+
+.layoutCover {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.layoutCover > * {
+  margin-top: #{$spacing-medium};
+  margin-bottom: #{$spacing-medium};
+}
+
+.layoutCover > :first-child:not([data-position-center]) {
+  margin-top: 0;
+}
+
+.layoutCover > :last-child:not([data-position-center]) {
+  margin-bottom: 0;
+}
+
+.layoutCover > [data-position-center],
+.layoutCover > :nth-last-child(n + 3) + * {
+  margin-top: auto;
+  margin-bottom: auto;
+}

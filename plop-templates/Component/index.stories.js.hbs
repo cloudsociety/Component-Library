@@ -1,0 +1,19 @@
+import React from "react";
+// import { text } from "@storybook/addon-knobs";
+import {{pascalCase name}} from './';
+
+import General from "./readme.mdx"
+
+export default {
+title: '{{type}}|{{titleCase name}}',
+component: {{pascalCase name}},
+parameters: {
+docs: {
+page: General,
+},
+},
+}
+
+export const Default = () => (
+<{{pascalCase name}} />
+)

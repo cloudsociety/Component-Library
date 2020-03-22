@@ -1,0 +1,18 @@
+/* ------------------------------------ *\
+# VIEWPORTPAD
+\* ------------------------------------ */
+
+// import variable file and use that instead.
+$bp-medium: 786px;
+$spacing-medium: 1.5rem;
+$spacing-large: 3rem;
+
+.viewportPad {
+  padding-left: $spacing-medium;
+  padding-right: $spacing-medium;
+
+  @media (min-width: $bp-medium) {
+    padding-left: $spacing-large;
+    padding-right: $spacing-large;
+  }
+}

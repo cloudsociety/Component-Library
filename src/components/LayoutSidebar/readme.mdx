@@ -1,0 +1,53 @@
+# Layout Sidebar
+
+The sidebar is a layout utility that will automatically make a row of items collapse to a single column when the content width of the sidebar is less than a specified size.
+
+```
+For wide screens, you get this.
++-----------+-----------+-----------+-----------+
+|           |                                   |
+|           |                                   |
+|           |                                   |
++-----------+-----------+-----------+-----------+
+
+For smaller screens, you get this.
+There is no middle ground, either
+a single row or a single column.
++---------------------+
+|                     |
+|                     |
++---------------------+
+|                     |
+|                     |
++---------------------+
+
+```
+
+## Usage
+
+```
+<LayoutSidebar>
+  <div className="fpo"></div>
+  <div className="fpo"></div>
+</LayoutSidebar>
+```
+
+`minWidth` is the minimum display width of the sidebar. If the viewport width is too small to comfortably fit both sidebar and content, they will stack.
+Children can be set to display with sidebar on right for both desktop or all (which should position sidebar on the bottom for mobile views).
+
+## Props
+
+The sidebar requires 2 children exactly.
+
+| Name            | Required | Type                               | DefaultValue |
+| --------------- | -------- | ---------------------------------- | ------------ |
+| children        | yes      | [React.ReactNode, React.ReactNode] |              |
+| minWidth        |          | string                             | "13rem"      |
+| rightForDesktop |          | boolean                            | false        |
+| rightForAll     |          | boolean                            | false        |
+| swapOrder       |          | boolean                            | false        |
+| classes         |          | string                             |              |
+
+## Examples
+
+Some possible examples here.

@@ -1,0 +1,46 @@
+/* ------------------------------------ *\
+# DRAWER
+\* ------------------------------------ */
+
+.drawerIsOpen {
+  overflow: hidden;
+}
+.drawer {
+  overflow: auto;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 300px;
+  max-width: 100%;
+  bottom: 0px;
+  background-color: whitesmoke;
+  box-shadow: 2px 0 5px #000;
+  transition: transform 0.25s ease-in-out;
+  transform: translateX(-100%);
+}
+
+.drawerAfterOpen {
+  transform: translateX(0);
+}
+
+.drawerBeforeClose {
+  transform: translateX(-100%) !important;
+}
+
+.drawerOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: hsla(0, 0%, 0%, 0.5);
+  transition: opacity 0.25s ease-in-out;
+  opacity: 0;
+}
+.drawerOverlayAfterOpen {
+  opacity: 1;
+}
+
+.drawerOverlayBeforeClose {
+  opacity: 0 !important;
+}

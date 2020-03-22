@@ -1,0 +1,64 @@
+/* ------------------------------------ *\
+# BUTTON
+\* ------------------------------------ */
+
+// Import color variables file
+$color-black: #000;
+$color-white: #fff;
+$color-darkgrey: #444;
+$color-grey: #757575;
+
+// secondary?: boolean;
+// buttonStyle?: "normal" | "hollow" | "link";
+// large?: boolean;
+.button {
+  /* Write some styles */
+  font: inherit;
+  padding: 0.3rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  color: $color-black;
+  transition: 0.2s;
+}
+
+.button:hover,
+.button:focus {
+  color: $color-darkgrey;
+}
+
+.button[disabled] {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.button--secondary {
+  color: $color-grey;
+}
+
+.button--large {
+  font-size: larger;
+}
+
+.button--normal {
+  background-color: currentColor;
+  border: 3px solid;
+
+  span {
+    color: $color-white;
+  }
+}
+
+.button--hollow {
+  background-color: transparent;
+  border: 3px solid;
+}
+
+.button--link {
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

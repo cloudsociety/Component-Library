@@ -1,0 +1,58 @@
+/*------------------------------------*\
+#LAYOUTSWITCHER
+\*------------------------------------*/
+
+// import color variables and use that instead.
+$color-white: #fff;
+$color-black: #000;
+
+// import variable file and use that instead.
+$spacing-large: 3rem;
+
+.layoutSwitcher {
+  overflow: hidden;
+}
+
+.layoutSwitcher.layoutSwitcher--no-grow > * > * {
+  // For some layouts, we want the children to only be as wide
+  // as their intrinsic width. ie. Social links.
+  flex-grow: 0;
+  white-space: nowrap;
+}
+
+// This creates a midway vertical rule that hides on wrap thanks
+// to `overflow: hidden` above.
+.layoutSwitcher.layoutSwitcher--vertical-rule > * > * + * {
+  box-shadow: calc(-2rem + 2px) 0 0 1px #{$color-white},
+    -2rem 0 0 #{$color-black};
+}
+
+.layoutSwitcher > * {
+  display: flex;
+  flex-wrap: wrap;
+  // Negative margins ensure that mobile display has
+  // adequate spacing between elements.
+  margin: -0.5rem calc((#{$spacing-large} / 2) * -1);
+}
+
+.layoutSwitcher > * > * {
+  flex-grow: 1;
+  // This causes our elements to break at a specific parent width.
+  // Specifically, when the parent is less than 30rem, the result
+  // of calc() will be a large positive number, forcing the
+  // elements to wrap and take up 100% width.
+  // When parent is greater than 30rem, the result will be a
+  // large negative value, which gets reset to zero, allowing
+  // elements to take up an equal amount of space in a row.
+  flex-basis: calc((30rem - (100% - #{$spacing-large})) * 999);
+  margin: 0.5rem calc(#{$spacing-large} / 2);
+}
+
+// If we have more than 4 items, break into individual
+// rows by default.
+// This might not be required, but developers could
+// mistakenly add too many elements as children.
+.layoutSwitcher > * > :nth-last-child(n + 5),
+.layoutSwitcher > * > :nth-last-child(n + 5) ~ * {
+  flex-basis: 100%;
+}
