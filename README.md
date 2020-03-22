@@ -30,7 +30,7 @@ In the src/component directory, you'll find:
 
 Feel free to create a PR if there are others that should be here... or if a current component requires a change to align with new information.
 
-## The styles down work in my project!
+## The styles don't work in my project!
 
 Change them. Every project has unique goals and challenges. These components are meant as a starter, not the complete deal (we do aim for easiest use though).
 
