@@ -1,0 +1,42 @@
+/*------------------------------------*\
+#LAYOUT421
+\*------------------------------------*/
+
+$spacing-large: 4rem;
+
+.layout421 {
+  // Ensure consistent spacing when
+  // we wrap the layout.
+  overflow: hidden;
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+}
+
+.layout421 > * {
+  display: flex;
+  flex-wrap: wrap;
+  // This works with `overflow:hidden` above.
+  margin: #{$spacing-large / 2 * -1};
+}
+
+.layout421 > * > * {
+  flex-grow: 1;
+  flex-basis: 23ch;
+  margin: #{$spacing-large / 2};
+
+  // This media query covers off only the edge case of
+  // having enough room for 3 in a row.
+  // We break to 2x2 just before the flex would
+  // cause a wrap of one item to the next line.
+  // Then we disable it as soon as the browser is
+  // able to find its way again.
+  // The widths are estimated based on widths + gaps,
+  // but ultimately, they're magic numbers, which is
+  // why we disable them as soon as possible.
+  @media (min-width: 90ch) and (max-width: 150ch) {
+    flex-basis: 40%; // Account for the gap.
+  }
+}
