@@ -1,4 +1,4 @@
-# Versett Reusable Component Library
+# Reusable Component Library
 
 ## What is this?
 
